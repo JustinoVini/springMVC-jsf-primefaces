@@ -6,8 +6,52 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title><ui:insert name="titulo">Caixaki</ui:insert></title>
+
+	<h:outputScript name="jquery.js" library="primefaces/jquery" />
+	<h:outputStylesheet name="estilo.css" library="css" />
+	<h:outputScript name="scripty.js" library="javascript" />
 </h:head>
+
 <h:body>
-	<h1>Login</h1>
+	<div id="imagemlogin">
+		<h:graphicImage library="img" name="logocaixaaqui.png" styleClass="bordaImagem" />
+	</div>
+
+	<div id="keyslogin">
+		<h:graphicImage library="img" name="keys.png" styleClass="bordaImagem" />
+	</div>
+	
+	<div id="formlogin">
+		<br/>
+		
+		<h:panelGroup rendered="#{!empty param.login_error}">
+		
+			<h:outputLabel rendered="#{SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad Credentials'}">
+				<span class="estiloSpan">
+					Permissão Negada, login ou senha incorretos.
+				</span>
+			</h:outputLabel>
+			
+			<h:outputLabel rendered="#{SPRING_SECURITY_LAST_EXCEPTION.message == 'Maximum sessions of 1 for this principal exceeded'}">
+				<span class="estiloSpan">
+					Você está logado em outra sessão.
+				</span>
+				
+				<h:commandButton value="Encerrar" style="height:40px;width:100px;background-color:#CDCDC1; border: 1px"
+				onclick="invalidarSession('#{request.contextPath}', '/publico/invalidateSession');"/>
+			</h:outputLabel>
+			
+		</h:panelGroup>
+		
+		<br/>
+		
+		<form id="formulario" method="post" onsubmit="return validarSenhaLogin();" name>
+		
+		<form>
+		
+	</div>
+
 </h:body>
 </html>

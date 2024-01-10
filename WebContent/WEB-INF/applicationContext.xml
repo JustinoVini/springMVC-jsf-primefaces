@@ -116,6 +116,13 @@
 	  
 	 <bean id="reportUtil" class="br.com.project.report.util.ReportUtil"/> 
 	 <bean id="utilFramework" class="br.com.framework.utils.UtilFramework" scope="session"/> 
+	 
+	 <!-- Controllers -->
+	 
+	 <!-- DAOS -->
+	 <bean id="repositoryLogin" class="br.com.dao.implementacao.DaoLogin"/>
+	 
+	 <!-- services -->
 	 <bean id="sessionController" class="br.com.project.geral.controller.SessionControllerImpl" scope="singleton"/>
 	 
 	 

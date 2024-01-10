@@ -1,4 +1,4 @@
-package br.com.projeto.annotation;
+package br.com.project.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

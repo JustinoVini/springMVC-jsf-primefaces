@@ -116,6 +116,7 @@
 	  
 	 <bean id="reportUtil" class="br.com.project.report.util.ReportUtil"/> 
 	 <bean id="utilFramework" class="br.com.framework.utils.UtilFramework" scope="session"/> 
+	 <bean id="sessionController" class="br.com.project.geral.controller.SessionControllerImpl" scope="singleton"/>
 	 
 	 
 

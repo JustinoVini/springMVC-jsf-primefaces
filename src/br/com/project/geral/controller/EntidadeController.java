@@ -18,8 +18,9 @@ public class EntidadeController extends ImplementacaoCrud<Entidade> implements I
 	@Autowired
 	private SrvEntidade srvEntidade;
 
-	public Entidade findUserLogado(String userLoado) throws Exception {
-		return super.findInuqueByProperty(Entidade.class, userLoado, "ent_login", " and entity.ent_inativo is false");
+	public Entidade findUserLogado(String userLogado) throws Exception {
+		return super.findInuqueByProperty(Entidade.class, 
+				userLogado, "ent_login", " and entity.ent_inativo is false");
 	}
 
 	public Date getUltimoAcessoEntidadeLogada(String login) {

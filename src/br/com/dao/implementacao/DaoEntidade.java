@@ -2,7 +2,6 @@ package br.com.dao.implementacao;
 
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.framework.implementacao.crud.ImplementacaoCrud;

@@ -41,7 +41,9 @@ public class ContextoBean implements Serializable {
 	public Entidade getEntidadeLogada() throws Exception {
 		Entidade entidade = (Entidade) getExternalContext().getSessionMap().get(USER_LOGADO_SESSAO);
 		
-		if (entidade == null || (entidade != null && !entidade.getEnt_login().equals(getUserPrincipal()))) {
+		if (entidade == null || (entidade != null && 
+				!entidade.getEnt_login().equals(getUserPrincipal()))) {
+			
 			if (getAuthentication().isAuthenticated()) {
 				entidadeController.updateUltimoAcessoUser(getAuthentication().getName());
 				entidade = entidadeController.findUserLogado(getAuthentication().getName());
@@ -55,7 +57,6 @@ public class ContextoBean implements Serializable {
 	}
 	
 	private Object getUserPrincipal() {
-
 		return getExternalContext().getUserPrincipal().getName();
 	}
 

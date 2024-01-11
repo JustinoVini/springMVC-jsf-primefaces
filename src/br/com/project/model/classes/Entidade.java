@@ -26,14 +26,14 @@ public class Entidade implements Serializable {
 	private Boolean ent_inativo = false;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date ent_utlimoacesso;
+	private Date ent_ultimoacesso;
 
-	public void setEnt_utlimoacesso(Date ent_utlimoacesso) {
-		this.ent_utlimoacesso = ent_utlimoacesso;
+	public void setent_ultimoacesso(Date ent_ultimoacesso) {
+		this.ent_ultimoacesso = ent_ultimoacesso;
 	}
 
-	public Date getEnt_utlimoacesso() {
-		return ent_utlimoacesso;
+	public Date getent_ultimoacesso() {
+		return ent_ultimoacesso;
 	}
 
 	public String getEnt_login() {

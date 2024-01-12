@@ -105,6 +105,19 @@
 					</a>
 				</div>
 
+				<div id="barramenu">
+					<p:tieredMenu id="menuEsquerdo"
+						style="width: 185px; border: none;color:#000">
+
+						<!-- Aqui adicionamos mais itens no menu -->
+						<p:menuitem value="Início" id="menuinicio"
+							onclick="redirecionarPagina('#{request.contextPath}', '/restrito/principal');" ajax="true" />
+
+						<p:menuitem onclick="javascript:logout('#{request.contextPath}')"
+							value="Sair" id="menusair" ajax="true" />
+					</p:tieredMenu>
+				</div>
+
 			</div>
 
 			<p:dialog widgetVar="enviarMsgDialog" id="alterarMsgDialog"

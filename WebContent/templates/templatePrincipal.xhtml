@@ -62,21 +62,66 @@
 					<span style="position: absolute; left: 20px; top: 14px"
 						id="spanLogo"> <h:graphicImage library="img"
 							name="logo.png" id="logoImg" styleClass="bordaImagem" />
-					</span> 
-					<span id="dadoslogin"> usuário: #{entidadeBeanView.usuarioLogadoSecurity}
-						<br id="quebraUser"/>
-						Último login:
-						<h:outputLabel value="#{entidadeBeanView.ultimoAcesso}" id="saidaUltimoAcesso">
+					</span> <span id="dadoslogin"> usuário:
+						#{entidadeBeanView.usuarioLogadoSecurity} <br id="quebraUser" />
+						Último login: <h:outputLabel
+							value="#{entidadeBeanView.ultimoAcesso}" id="saidaUltimoAcesso">
 							<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy HH:mm:ss"
-							dateStyle="long" timeStyle="full" timeZone="GMT-03:00"/>
-						</h:outputLabel>
-						<br id="quebraUltimoAcesso"/>
-						<a href="#" onclick="javascript:logout('#{request.contextPath}')">Sair</a>
+								dateStyle="long" timeStyle="full" timeZone="GMT-03:00" />
+						</h:outputLabel> <br id="quebraUltimoAcesso" /> <a href="#"
+						onclick="javascript:logout('#{request.contextPath}')">Sair</a>
+					</span> <span id="menuSistema"
+						style="position: absolute; right: 25px; top: 48px; width: 20px">
+						<a href="#" onclick="abrirMenupop()"> <h:graphicImage
+								library="img" name="setabaixo.png" styleClass="bordaImagem"
+								id="imaSetaBaixo" />
+					</a>
 					</span>
 				</div>
 
+				<div id="menu">
+					<span id="iniciarmenu"> <h:graphicImage library="img"
+							name="iconemenu.png" styleClass="bordaImagem" id="iconemenu">Menu</h:graphicImage>
+					</span>
+				</div>
+
+				<div id="corpo" class="corpo">
+					<ui:insert name="corpo" />
+				</div>
+
+				<div id="menupop">
+					<sec:ifAnyGranted roles="MENSAGENS_ENVIAR_ACESSAR, ADMIN">
+						<p:commandLink actionListener="#{mensagemBeanView.novo}"
+							onsuccess="enviarMsgDialog.show()" value="Enviar Mensagem"
+							immediate="true" style="display: block;" id="enviarMensagem"
+							ajax="true" process="@this">
+							<p:ajax immediate="true" listener="#{mensagemBeanView.novo}" />
+						</p:commandLink>
+					</sec:ifAnyGranted>
+
+					<a href="#" onclick="alterarSenhaDialog.show();"
+						style="display: block;" id="alterarSenha"> <span
+						style="display: block;" id="spanAlterarSenha">Alterar Senha</span>
+					</a>
+				</div>
 
 			</div>
+
+			<p:dialog widgetVar="enviarMsgDialog" id="alterarMsgDialog"
+				width="800" modal="true" resizable="false" height="360"
+				header="Enviar mensagem" appendToBody="false" dynamic="true">
+			</p:dialog>
+
+			<p:dialog widgetVar="alterarSenhaDialog" id="alterarSenhaDialog"
+				width="240px" modal="true" resizable="false" height="170"
+				header="Alterar Senha" dynamic="false" appendToBody="false">
+					corpo
+			</p:dialog>
+
+			<script>
+				$('#menupop').hide();
+			</script>
+
 		</h:body>
 
 	</h:form>

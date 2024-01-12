@@ -25,7 +25,7 @@
 		<h:outputScript name="jquery.maskMoney.min.js" library="javascript"
 			id="jsMaskMoneySistema" />
 		<h:outputScript name="jquery.maskedinput.js" library="javascript"
-			id="jsMaskInputSistema" />
+			id="jsMaskInputSistema2" />
 		<h:outputScript name="scripty.js" library="javascript"
 			id="jsScriptSistema" />
 		<h:outputScript name="jsf.js" library="javax.faces" />
@@ -40,7 +40,10 @@
 
 		<h:body>
 			<script type="text/javascript" charset="UTF-8">
-				$.noConflit();
+				$.noConflict();
+				localeData_pt_br();
+				initTamplete();
+				ocultarMenu();
 
 				/*Bloqueia o F5 do teclado*/
 				$(document).keydown(function(e) {
@@ -110,8 +113,12 @@
 						style="width: 185px; border: none;color:#000">
 
 						<!-- Aqui adicionamos mais itens no menu -->
+
+
+
 						<p:menuitem value="Início" id="menuinicio"
-							onclick="redirecionarPagina('#{request.contextPath}', '/restrito/principal');" ajax="true" />
+							onclick="redirecionarPagina('#{request.contextPath}', '/restrito/principal');"
+							ajax="true" />
 
 						<p:menuitem onclick="javascript:logout('#{request.contextPath}')"
 							value="Sair" id="menusair" ajax="true" />
@@ -131,13 +138,13 @@
 					corpo
 			</p:dialog>
 
-			<script>
-				$('#menupop').hide();
-			</script>
-
 		</h:body>
 
 	</h:form>
+
+	<script type="text/javascript" charset="UTF-8">
+		carregarIdsElementosPagina();
+	</script>
 
 </sec:isAuthenticated>
 

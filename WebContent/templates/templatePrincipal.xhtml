@@ -111,9 +111,19 @@
 				<div id="barramenu">
 					<p:tieredMenu id="menuEsquerdo"
 						style="width: 185px; border: none;color:#000">
-
 						<!-- Aqui adicionamos mais itens no menu -->
+						<sec:ifAnyGranted roles="CADASTRO_ACESSAR, ADMIN">
 
+							<p:submenu label="Cadastros">
+								<sec:ifAnyGranted roles="CIDADES_ACESSAR, ADMIN">
+									<p:menuitem value="Cidade" id="menuCidade"
+										action="/cadastro/cad_cidade.jsf?faces-redirect=true">
+
+									</p:menuitem>
+								</sec:ifAnyGranted>
+							</p:submenu>
+
+						</sec:ifAnyGranted>
 
 
 						<p:menuitem value="Início" id="menuinicio"

@@ -42,10 +42,60 @@
 
 			<p:commandButton value="Salvar" ajax="false"
 				action="#{cidadeBeanView.save}" />
-				
+
 			<p:commandButton value="Novo" ajax="false"
 				action="#{cidadeBeanView.novo}" />
 		</h:form>
+
+		<p:dataTable id="tableResult" value="#{cidadeBeanView.list}"
+			var="objeto" emptyMessage="Não existem valores para exibição.">
+
+			<p:column>
+				<center>
+					<f:facet name="header">Código</f:facet>
+					<h:outputText value="#{objeto.cid_codigo}" />
+				</center>
+			</p:column>
+
+			<p:column>
+				<center>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{objeto.cid_descricao}" />
+				</center>
+			</p:column>
+
+			<p:column>
+				<center>
+					<f:facet name="header">Estado</f:facet>
+					<h:outputText value="#{objeto.estado.est_nome}" />
+				</center>
+			</p:column>
+
+			<p:column>
+				<center>
+					<f:facet name="header">Editar</f:facet>
+					<p:commandLink action="#{cidadeBeanView.editar}" id="editarCidade"
+						update="@form:formCadastro" value="Editar" ajax="false"
+						immediate="true">
+						<f:setPropertyActionListener value="#{objeto}"
+							target="#{cidadeBeanView.objetoSelecionado}" />
+					</p:commandLink>
+				</center>
+			</p:column>
+
+			<p:column>
+				<center>
+					<f:facet name="header">Excluir</f:facet>
+					<p:commandLink action="#{cidadeBeanView.excluir}"
+						id="excluirCidade" update="tableResult" value="Excluir"
+						ajax="false" immediate="true">
+						<f:setPropertyActionListener value="#{objeto}"
+							target="#{cidadeBeanView.objetoSelecionado}" />
+					</p:commandLink>
+				</center>
+			</p:column>
+
+		</p:dataTable>
 
 	</ui:define>
 

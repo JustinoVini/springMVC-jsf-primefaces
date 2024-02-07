@@ -1,5 +1,8 @@
 package br.com.project.bean.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 
@@ -20,9 +23,16 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 	private String url = "/cadastro/cad_cidade.jsf?faces-redirect=true";
 
 	private Cidade objetoSelecionado = new Cidade();
+	
+	private List<Cidade> list = new ArrayList<Cidade>();
 
 	@Resource
 	private CidadeController cidadeController;
+	
+	public List<Cidade> getList() throws Exception {
+		list = cidadeController.findList(Cidade.class);
+		return list;
+	}
 
 	@Override
 	public String save() throws Exception {
@@ -35,6 +45,19 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 	public String novo() throws Exception { // verifica se já tem, se tem atualiza, se nao cadastr 
 		objetoSelecionado = new Cidade();
 		return url;
+	}
+	
+	@Override
+	public String editar() throws Exception {
+		
+		return url;
+	}
+	
+	@Override
+	public void excluir() throws Exception {
+		cidadeController.delete(objetoSelecionado);
+		
+		novo();
 	}
 
 	public void setObjetoSelecionado(Cidade objetoSelecionado) {

@@ -29,16 +29,18 @@
 						requiredMessage="Informe o nome da cidade" />
 					<p:message for="cidadeNome" />
 
-					<h:outputLabel for="estados" id="labelEstado" value="Estado * : " />
+					<h:outputLabel for="estado" id="labelEstado" value="Estado * : " />
 					<p:selectOneMenu id="estado" required="true" style="width: 200px;"
 						requiredMessage="Informe o estado."
 						value="#{cidadeBeanView.objetoSelecionado.estado}">
 						<f:selectItems value="#{estadoBeanView.estados}" />
 					</p:selectOneMenu>
+					<p:message for="estado" />
 
 				</h:panelGrid>
 			</p:panel>
 
+			<div class="espacoBranco" />
 
 			<p:commandButton value="Salvar" ajax="false"
 				action="#{cidadeBeanView.save}" />
@@ -46,6 +48,13 @@
 			<p:commandButton value="Novo" ajax="false"
 				action="#{cidadeBeanView.novo}" />
 		</h:form>
+
+		<div class="espacoBranco" />
+
+		<script type="text/javascript" charset="UTF-8">
+			addFocoAoCampo("cidadeNome");
+			gerenciaTeclaEnter();
+		</script>
 
 		<p:dataTable id="tableResult" value="#{cidadeBeanView.list}"
 			var="objeto" emptyMessage="Não existem valores para exibição.">

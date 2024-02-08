@@ -47,6 +47,9 @@
 
 			<p:commandButton value="Novo" ajax="false"
 				action="#{cidadeBeanView.novo}" />
+
+			<p:commandButton value="Abrir Modal" />
+
 		</h:form>
 
 		<div class="espacoBranco" />
@@ -57,7 +60,9 @@
 		</script>
 
 		<p:dataTable id="tableResult" value="#{cidadeBeanView.list}"
-			var="objeto" emptyMessage="Não existem valores para exibição.">
+			var="objeto" emptyMessage="Não existem valores para exibição."
+			paginator="true" paginatorPosition="bottom" rows="5"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
 			<p:column>
 				<center>

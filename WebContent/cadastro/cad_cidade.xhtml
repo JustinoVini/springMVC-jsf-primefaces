@@ -9,7 +9,6 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/templatePrincipal.xhtml">
-
 	<ui:define name="corpo">
 		<!--  Aqui vai o corpo da pagina  -->
 		<h:form id="formCadastro" prependId="false">
@@ -20,7 +19,6 @@
 					<p:inputText id="id" styleClass="estiloIdCadastro" disabled="true"
 						value="#{cidadeBeanView.objetoSelecionado.cid_codigo}" />
 					<h:outputLabel />
-
 					<h:outputLabel id="labelNomeConsultaCidade" for="cidadeNome"
 						value="Nome * :" />
 					<p:inputText id="cidadeNome" styleClass="estyleInputNome"
@@ -28,7 +26,6 @@
 						value="#{cidadeBeanView.objetoSelecionado.cid_descricao}"
 						requiredMessage="Informe o nome da cidade" />
 					<p:message for="cidadeNome" />
-
 					<h:outputLabel for="estado" id="labelEstado" value="Estado * : " />
 					<p:selectOneMenu id="estado" required="true" style="width: 200px;"
 						requiredMessage="Informe o estado."
@@ -36,7 +33,6 @@
 						<f:selectItems value="#{estadoBeanView.estados}" />
 					</p:selectOneMenu>
 					<p:message for="estado" />
-
 				</h:panelGrid>
 			</p:panel>
 
@@ -64,60 +60,9 @@
 			paginator="true" paginatorPosition="bottom" rows="5"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-			<p:column style="width: 100px">
-				<center>
-					<f:facet name="header">Código</f:facet>
-					<h:outputText value="#{objeto.cid_codigo}" />
-				</center>
-			</p:column>
-
-			<p:column style="width: 400px">
-				<center>
-					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{objeto.cid_descricao}" />
-				</center>
-			</p:column>
-
-			<p:column style="width: 400px">
-				<center>
-					<f:facet name="header">Estado</f:facet>
-					<h:outputText value="#{objeto.estado.est_nome}" />
-				</center>
-			</p:column>
+		<ui:include src="/resources/components/colunasDataTableCidade.xhtml" />	
 			
-			<p:column style="width: 50px">
-				<center>
-					<f:facet name="header">Excluir</f:facet>
-					<p:commandLink action="#{cidadeBeanView.excluir}"
-						id="excluirCidade" update="tableResult" ajax="false"
-						immediate="true"
-						onclick="if(!confirm('Confirma a exclusão da cidade: #{objeto.cid_descricao}?')) return false;">
-						<h:graphicImage library="img" name="excluir16.png" />
-						<f:setPropertyActionListener value="#{objeto}"
-							target="#{cidadeBeanView.objetoSelecionado}" />
-					</p:commandLink>
-				</center>
-			</p:column>
-
-			<sec:ifAnyGranted roles="CIDADE_EDITAR, ADMIN">
-				<p:column style="width: 50px">
-					<center>
-						<f:facet name="header">Editar</f:facet>
-						<p:commandLink action="#{cidadeBeanView.editar}" id="editarCidade"
-							update="@form:formCadastro" ajax="false" immediate="true"
-							oncomplete="addFocoCampo('cidadeNome');">
-							<h:graphicImage library="img" name="editar16.png" />
-							<f:setPropertyActionListener value="#{objeto}"
-								target="#{cidadeBeanView.objetoSelecionado}" />
-						</p:commandLink>
-					</center>
-				</p:column>
-			</sec:ifAnyGranted>
-
 		</p:dataTable>
-
 	</ui:define>
-
 </ui:composition>
-
 </html>

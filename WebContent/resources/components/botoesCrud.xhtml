@@ -11,6 +11,7 @@
 <composite:interface name="botoesCrud">
 	<composite:attribute name="managedBeanView" required="true" />
 	<composite:attribute name="botaoNovo" required="false" default="true" />
+	<composite:attribute name="camposReload" required="false"/>
 </composite:interface>
 
 <composite:implementation>
@@ -18,17 +19,13 @@
 		style="height:40px;width:100px;background:#CDCDC1;border: 1px solid #FFFFFF;"
 		rendered="#{cc.attrs.botaoNovo}"
 		action="#{cc.attrs.managedBeanView.novo}"
-		id="buttonNovo">
+		ajax="false"
+		immediate="true"
+		id="buttonNovo"
+		update="#{cc.attrs.camposReload}">
 		
 	</p:commandButton>
 </composite:implementation>
 
-<!-- 
-<p:commandButton value="Salvar" ajax="false"
-	action="#{cidadeBeanView.save}" />
-
-<p:commandButton value="Novo" ajax="false"
-	action="#{cidadeBeanView.novo}" />
- -->
 
 </html>

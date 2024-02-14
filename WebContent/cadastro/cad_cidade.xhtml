@@ -38,8 +38,10 @@
 
 			<div class="espacoBranco" />
 
-			<util:botoesCrud managedBeanView="#{cidadeBeanView}">
-			
+			<util:botoesCrud managedBeanView="#{cidadeBeanView}"
+				camposReload=":formTemplate:msg, tableResult" 
+				botaoNovo="#{contextoBean.possuiAcesso('CIDADE_NOVO', 'ADMIN')}">
+
 			</util:botoesCrud>
 
 		</h:form>
@@ -56,8 +58,8 @@
 			paginator="true" paginatorPosition="bottom" rows="5"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-		<ui:include src="/resources/components/colunasDataTableCidade.xhtml" />	
-			
+			<ui:include src="/resources/components/colunasDataTableCidade.xhtml" />
+
 		</p:dataTable>
 	</ui:define>
 </ui:composition>

@@ -33,6 +33,11 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 		list = cidadeController.findList(Cidade.class);
 		return list;
 	}
+	
+	@Override
+	public void saveEdit() throws Exception {
+		saveNotReturn();
+	}
 
 	@Override
 	public String save() throws Exception {

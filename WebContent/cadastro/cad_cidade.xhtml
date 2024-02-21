@@ -10,6 +10,11 @@
 
 <ui:composition template="/templates/templatePrincipal.xhtml">
 	<ui:define name="corpo">
+		<p:commandLink immediate="true">
+			<p:fileDownload value="#{cidadeBeanView.arquivoReport}" />
+			<h:graphicImage library="img" name="pdf.png"/>
+		</p:commandLink>
+
 		<!--  Aqui vai o corpo da pagina  -->
 		<h:form id="formCadastro" prependId="false">
 			<c:set var="isCadastro" value="true" scope="view" />

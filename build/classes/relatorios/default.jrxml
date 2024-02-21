@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="default" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1f26f581-127b-4591-b7f3-123db4fcd39c">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="REPORT_PARAMETERS_IMG" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="103" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="32" width="241" height="36" uuid="8ddbad67-853e-4170-a119-7db429be2a07"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Relatório não disponível]]></text>
+			</staticText>
+			<image>
+				<reportElement x="241" y="0" width="314" height="68" uuid="bba82808-1bcf-4e6e-8a64-85a5fba06325"/>
+				<imageExpression><![CDATA[$P{REPORT_PARAMETERS_IMG} + "leaf_banner_violet.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="345" y="10" width="210" height="18" uuid="ad7ffa51-5236-4f05-bbec-2145e62f42c6"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

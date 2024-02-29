@@ -11,8 +11,31 @@
 <ui:composition template="/templates/templatePrincipal.xhtml">
 	<ui:define name="corpo">
 		<p:commandLink immediate="true" ajax="false">
+			<f:setPropertyActionListener value="1"
+				target="#{cidadeBeanView.tipoRelatorio}" />
 			<p:fileDownload value="#{cidadeBeanView.arquivoReport}" />
 			<h:graphicImage library="img" name="pdf.png" />
+		</p:commandLink>
+		
+		<p:commandLink immediate="true" ajax="false">
+			<f:setPropertyActionListener value="2"
+				target="#{cidadeBeanView.tipoRelatorio}" />
+			<p:fileDownload value="#{cidadeBeanView.arquivoReport}" />
+			<h:graphicImage library="img" name="excel.png" />
+		</p:commandLink>
+		
+		<p:commandLink immediate="true" ajax="false">
+			<f:setPropertyActionListener value="3"
+				target="#{cidadeBeanView.tipoRelatorio}" />
+			<p:fileDownload value="#{cidadeBeanView.arquivoReport}" />
+			<h:graphicImage library="img" name="html.png" />
+		</p:commandLink>
+		
+		<p:commandLink immediate="true" ajax="false">
+			<f:setPropertyActionListener value="4"
+				target="#{cidadeBeanView.tipoRelatorio}" />
+			<p:fileDownload value="#{cidadeBeanView.arquivoReport}" />
+			<h:graphicImage library="img" name="ods.png" />
 		</p:commandLink>
 
 		<!--  Aqui vai o corpo da pagina  -->

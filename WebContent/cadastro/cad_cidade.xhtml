@@ -10,9 +10,9 @@
 
 <ui:composition template="/templates/templatePrincipal.xhtml">
 	<ui:define name="corpo">
-		<p:commandLink immediate="true">
+		<p:commandLink immediate="true" ajax="false">
 			<p:fileDownload value="#{cidadeBeanView.arquivoReport}" />
-			<h:graphicImage library="img" name="pdf.png"/>
+			<h:graphicImage library="img" name="pdf.png" />
 		</p:commandLink>
 
 		<!--  Aqui vai o corpo da pagina  -->

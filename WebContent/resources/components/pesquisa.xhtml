@@ -16,6 +16,7 @@
 		<composite:attribute name="ocultaNovo" required="true" />
 		<composite:attribute name="menuImpressao" required="false"
 			default="false" />
+		<composite:attribute name="nomePesquisa" required="true" />
 	</composite:interface>
 
 	<composite:implementation>
@@ -29,13 +30,30 @@
 					ajax="false" immediate="true"
 					action="#{cc.attrs.managedBeanView.novo()}" />
 			</h:column>
-			
+
 			<h:column rendered="#{cc.attrs.menuImpressao}">
 				<util:menuImpressao bean="#{cc.attrs.managedBeanView}"></util:menuImpressao>
 			</h:column>
 		</h:panelGrid>
 
+		<p:spacer height="20px" />
 
+		<p:panel id="panelPesquisa" header="#{cc.attrs.nomePesquisa}">
+
+			<h:panelGrid id="panelGridPesquisa" columns="7">
+
+				<h:outputLabel for="campo" id="labelCampo" value="Campo: " />
+				<p:selectOneMenu style="width: 150px;" id="campo" 
+					onchange=""
+					value="">
+					<f:selectItems var="campoPesquisaSelecionado"
+						id="itensCampoPesquisa">
+					</f:selectItems>
+				</p:selectOneMenu>
+
+			</h:panelGrid>
+
+		</p:panel>
 
 	</composite:implementation>
 </h:form>

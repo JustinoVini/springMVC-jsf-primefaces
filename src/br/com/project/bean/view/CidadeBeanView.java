@@ -117,5 +117,11 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 	protected InterfaceCrud<Cidade> getController() {
 		return cidadeController;
 	}
+	
+	@Override
+	public void consultarEntidade() throws Exception {
+		// TODO Auto-generated method stub
+		super.consultarEntidade();
+	}
 
 }

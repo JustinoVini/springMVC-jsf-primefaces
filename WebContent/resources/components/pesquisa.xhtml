@@ -44,7 +44,7 @@
 
 				<h:outputLabel for="campo" id="labelCampo" value="Campo: " />
 				<p:selectOneMenu style="width: 150px;" id="campo" onchange=""
-					value="">
+					value="#{cc.attrs.managedBeanView.objetoCampoConsultaSelecionado}">
 
 					<f:selectItems var="campoPesquisaSelecionado"
 						itemLabel="#{campoPesquisaSelecionado.descricao}"
@@ -55,6 +55,10 @@
 					</f:selectItems>
 				</p:selectOneMenu>
 
+				<p:commandButton id="buttonPesquisar" value="Filtrar" ajax="true"
+					actionListener="#{cc.attrs.managedBeanView.consultarEntidade}"
+					process="@this,panelGridPesquisa">
+				</p:commandButton>
 			</h:panelGrid>
 
 		</p:panel>

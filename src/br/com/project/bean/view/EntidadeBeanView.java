@@ -44,4 +44,10 @@ public class EntidadeBeanView extends BeanManagedViewAbstract {
 		return entidadeController;
 	}
 
+	@Override
+	public String condicaoAndParaPesquisa() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

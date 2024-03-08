@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Component;
 
 import br.com.framework.interfac.crud.InterfaceCrud;
@@ -32,13 +33,15 @@ public abstract class BeanManagedViewAbstract extends BeanReportView {
 	public List<SelectItem> listaCondicaoPesquisa;
 
 	public CondicaoPesquisa condicaoPesquisaSelecionado;
-	
+
 	public String valorPesquisa;
 	
+	public abstract String condicaoAndParaPesquisa() throws Exception;
+
 	public void setValorPesquisa(String valorPesquisa) {
 		this.valorPesquisa = valorPesquisa;
 	}
-	
+
 	public String getValorPesquisa() {
 		return valorPesquisa != null ? new UtilitariaRegex().retiraAcentos(valorPesquisa) : "";
 	}
@@ -121,6 +124,26 @@ public abstract class BeanManagedViewAbstract extends BeanReportView {
 				return objt1.getPrincipal().compareTo(objt2.getPrincipal());
 			}
 		});
+	}
+
+	public String getSqlLazyQuery() {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select entity from ");
+		sql.append(getQueryConsulta());
+		sql.append(" order by entity. ");
+		sql.append(objetoCampoConsultaSelecionado.getCampoBanco());
+		return sql.toString();
+	}
+
+	private Object getQueryConsulta() {
+		
+		return null;
+	}
+
+	public int totalRegistroConsulta() throws Exception {
+		Query query = getController().obterQuery(" select count(entity) from " + getQueryConsulta());
+		Number result = (Number) query.uniqueResult();
+		return result.intValue();
 	}
 
 }

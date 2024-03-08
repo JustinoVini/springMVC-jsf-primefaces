@@ -17,6 +17,7 @@
 		<composite:attribute name="menuImpressao" required="false"
 			default="false" />
 		<composite:attribute name="nomePesquisa" required="true" />
+		<composite:attribute name="colunasGridDataTableList" required="true" />
 	</composite:interface>
 
 	<composite:implementation>
@@ -43,7 +44,8 @@
 			<h:panelGrid id="panelGridPesquisa" columns="7">
 
 				<h:outputLabel for="campo" id="labelCampo" value="Campo: " />
-				<p:selectOneMenu style="width: 150px;" id="campo" onchange=""
+				<p:selectOneMenu style="width: 150px;" id="campo"
+					onchange="addMascaraPesquisa(this.value);"
 					value="#{cc.attrs.managedBeanView.objetoCampoConsultaSelecionado}">
 
 					<f:selectItems var="campoPesquisaSelecionado"
@@ -56,22 +58,68 @@
 				</p:selectOneMenu>
 
 				<h:outputLabel for="condicao" id="labelCondicao" value="Onde :" />
-				<p:selectOneMenu id="condicao" style="width: 150px" value="#{cc.attrs.managedBeanView.condicaoPesquisaSelecionado}">
+				<p:selectOneMenu id="condicao" style="width: 150px"
+					value="#{cc.attrs.managedBeanView.condicaoPesquisaSelecionado}">
 					<f:selectItems id="itensCondicao"
 						value="#{cc.attrs.managedBeanView.listaCondicaoPesquisa}">
 
 					</f:selectItems>
 				</p:selectOneMenu>
-				
-				<p:inputText id="valorPesquisa" immediate="false" value="#{cc.attrs.managedBeanView.valorPesquisa}"/>
+
+				<p:inputText id="valorPesquisa" style="width: 250px;"
+					onblur="validarCampoPesquisa(event);" immediate="false"
+					maxlength="65" onkeypress="executaPesquisaComEnter(event, this)"
+					value="#{cc.attrs.managedBeanView.valorPesquisa}" />
 
 				<p:commandButton id="buttonPesquisar" value="Filtrar" ajax="true"
 					actionListener="#{cc.attrs.managedBeanView.consultarEntidade}"
-					process="@this,panelGridPesquisa">
+					process="@this,panelGridPesquisa"
+					oncomplete="addFocoAoCampo('valorPesquisa');"
+					onsuccess="addFocoAoCampo('valorPesquisa');"
+					update=":formTemplate:msg, tableResult">
 				</p:commandButton>
 			</h:panelGrid>
 
 		</p:panel>
+
+		<p:spacer />
+
+		<p:dataTable id="tableResult" rendered="true"
+			value="#{cc.attrs.managedBeanView.list}" var="objeto" rows="10"
+			widgetVar="tableResult" paginator="true" paginatorPosition="bottom"
+			lazy="true" emptyMessage="Não Existem Valores para exibição"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+			<ui:include src="#{cc.attrs.colunasGridDataTableList}" />
+
+		</p:dataTable>
+
+		<script type="text/javascript" charset="UTF-8">
+			var idCampo = getValorElementPorIdJQuery('campo');
+			var idCampoCondicao = getValorElementPorIdJQuery('condicao');
+			var idPesquisa = getValorElementPorIdJQuery('valorPesquisa');
+
+			$(idPesquisa).keypress(permitNumber);
+
+			$(idCampo + ' :nth-child(1)').prop('selected', true);
+			$(idCampoCondicao + ' :nth-child(1)').prop('selected', true);
+			$(idPesquisa).val('');
+
+			addMascaraPesquisa($(idCampo).val());
+
+			addFocoAoCampo('valorPesquisa');
+
+			//chama o pesquisar ao dar enter na pesquisa
+			function executaPesquisaComEnter(event, button) {
+				if (event.keyCode == 13) {
+					event.preventDefault();
+					addFocoAoCampo('buttonPesquisar');
+
+					var buttonPesquisar = getValorElementPorIdJQuery('buttonPesquisar');
+					$(buttonPesquisar).click();
+				}
+			}
+		</script>
 
 	</composite:implementation>
 </h:form>

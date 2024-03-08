@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.framework.interfac.crud.InterfaceCrud;
 import br.com.project.annotation.IdentificaCampoPesquisa;
+import br.com.project.enums.CondicaoPesquisa;
 import br.com.project.report.util.BeanReportView;
 
 @Component
@@ -27,6 +28,27 @@ public abstract class BeanManagedViewAbstract extends BeanReportView {
 
 	public List<SelectItem> listaCampoPesquisa;
 
+	public List<SelectItem> listaCondicaoPesquisa;
+
+	public CondicaoPesquisa condicaoPesquisaSelecionado;
+
+	public void setCondicaoPesquisaSelecionado(CondicaoPesquisa condicaoPesquisaSelecionado) {
+		this.condicaoPesquisaSelecionado = condicaoPesquisaSelecionado;
+	}
+
+	public CondicaoPesquisa getCondicaoPesquisaSelecionado() {
+		return condicaoPesquisaSelecionado;
+	}
+
+	public List<SelectItem> getListaCondicaoPesquisa() {
+		listaCondicaoPesquisa = new ArrayList<SelectItem>();
+		for (CondicaoPesquisa condicaoPesquisa : CondicaoPesquisa.values()) {
+			listaCondicaoPesquisa.add(new SelectItem(condicaoPesquisa, condicaoPesquisa.toString()));
+		}
+
+		return listaCondicaoPesquisa;
+	}
+
 	public ObjetoCampoConsulta getObjetoCampoConsultaSelecionado() {
 		return objetoCampoConsultaSelecionado;
 	}
@@ -40,7 +62,8 @@ public abstract class BeanManagedViewAbstract extends BeanReportView {
 						String descricaoCampo = field.getAnnotation(IdentificaCampoPesquisa.class).descricaoCampo();
 						objetoCampoConsultaSelecionado.setDescricao(descricaoCampo);
 						objetoCampoConsultaSelecionado.setTipoClass(field.getType().getCanonicalName());
-						objetoCampoConsultaSelecionado.setPrincipal(field.getAnnotation(IdentificaCampoPesquisa.class).principal());
+						objetoCampoConsultaSelecionado
+								.setPrincipal(field.getAnnotation(IdentificaCampoPesquisa.class).principal());
 						break;
 					}
 				}

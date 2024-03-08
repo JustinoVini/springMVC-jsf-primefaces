@@ -55,6 +55,14 @@
 					</f:selectItems>
 				</p:selectOneMenu>
 
+				<h:outputLabel for="condicao" id="labelCondicao" value="Onde :" />
+				<p:selectOneMenu id="condicao" style="width: 150px" value="#{cc.attrs.managedBeanView.condicaoPesquisaSelecionado}">
+					<f:selectItems id="itensCondicao"
+						value="#{cc.attrs.managedBeanView.listaCondicaoPesquisa}">
+
+					</f:selectItems>
+				</p:selectOneMenu>
+
 				<p:commandButton id="buttonPesquisar" value="Filtrar" ajax="true"
 					actionListener="#{cc.attrs.managedBeanView.consultarEntidade}"
 					process="@this,panelGridPesquisa">

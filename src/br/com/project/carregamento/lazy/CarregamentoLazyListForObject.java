@@ -14,7 +14,7 @@ public class CarregamentoLazyListForObject<T> extends LazyDataModel<T> {
 
 	private static final long serialVersionUID = 1L;
 
-	public List<T> list = new ArrayList<T>();
+	private List<T> list = new ArrayList<T>();
 
 	private int totalRegistroConsulta = 0;
 
@@ -24,31 +24,27 @@ public class CarregamentoLazyListForObject<T> extends LazyDataModel<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<T> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
-		try {
-
-			if (query != null && !query.isEmpty()) {
-				list = (List<T>) controller.findListByQueryDinamica(sortField, first, pageSize);
-
-				if (totalRegistroConsulta == 0) {
-					setRowCount(0);
-				} else {
-					setRowCount(totalRegistroConsulta);
-				}
-
+	public List<T> load(int first, int pageSize, String sortField,
+			SortOrder sortOrder, Map<String, String> filters) {
+		
+		try{
+			if (query != null && !query.isEmpty())
+				list = (List<T>) controller.findListByQueryDinamica(query, first, pageSize);
+			
+			if (totalRegistroConsulta == 0){
+				setRowCount(list.size());
 			}
-
+			else {
+				setRowCount(totalRegistroConsulta);
+			}
 			setPageSize(pageSize);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		}catch (Exception e) {}	
 
 		return (List<T>) list;
 	}
 
-	public void setTotalRegistroConsulta(int totalRegistroConsulta, String queryDeBuscaConsulta) {
-		this.query = queryDeBuscaConsulta;
+	public void setTotalRegistroConsulta(int totalRegistroConsulta, String queryDeBuscaDeConsulta) {
+		this.query = queryDeBuscaDeConsulta;
 		this.totalRegistroConsulta = totalRegistroConsulta;
 	}
 
@@ -56,14 +52,14 @@ public class CarregamentoLazyListForObject<T> extends LazyDataModel<T> {
 		return list;
 	}
 
+	public void remove(T objetoSelecionado) {
+		this.list.remove(objetoSelecionado);
+	}
+
 	public void clean() {
 		this.query = null;
 		this.totalRegistroConsulta = 0;
 		this.list.clear();
-	}
-
-	public void remove(T objetoSelecionado) {
-		this.list.remove(objetoSelecionado);
 	}
 
 	public void add(T objetoSelecionado) {
@@ -76,6 +72,6 @@ public class CarregamentoLazyListForObject<T> extends LazyDataModel<T> {
 	
 	public Object getRowKey(T object) {
 		return object;
-	}
+	};
 
 }

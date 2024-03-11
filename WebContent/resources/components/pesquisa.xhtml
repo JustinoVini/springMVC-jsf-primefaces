@@ -85,7 +85,7 @@
 		<p:spacer />
 
 		<p:dataTable id="tableResult" rendered="true"
-			value="#{cc.attrs.managedBeanView.list}" var="objeto" rows="10"
+			value="#{cc.attrs.managedBeanView.list.list}" var="objeto" rows="10"
 			widgetVar="tableResult" paginator="true" paginatorPosition="bottom"
 			lazy="true" emptyMessage="Não Existem Valores para exibição"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">

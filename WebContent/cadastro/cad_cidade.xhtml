@@ -56,7 +56,7 @@
 			gerenciaTeclaEnter();
 		</script>
 
-		<p:dataTable id="tableResult" value="#{cidadeBeanView.list}"
+		<p:dataTable id="tableResult" value="#{cidadeBeanView.list.list}"
 			var="objeto" emptyMessage="Não existem valores para exibição."
 			paginator="true" paginatorPosition="bottom" rows="5"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">

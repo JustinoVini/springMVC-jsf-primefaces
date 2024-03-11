@@ -127,8 +127,7 @@ public class CidadeBeanView extends BeanManagedViewAbstract {
 
 	@Override
 	public String condicaoAndParaPesquisa() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 }
